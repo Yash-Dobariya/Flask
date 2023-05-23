@@ -1,0 +1,958 @@
+{
+	"info": {
+		"_postman_id": "9095b4da-2359-47dc-9937-62acc18ad783",
+		"name": "Insta Clone",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24551777"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "create user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\": \"saurav\",\r\n    \"last_name\": \"dobariya\",\r\n    \"email_id\": \"saurav@gmail.com\",\r\n    \"password\": \"123\",\r\n    \"dob\": \"23-02-2023\",\r\n    \"country\": \"india\",\r\n    \"bio\": \"I love nature\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/sign_up",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"sign_up"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{url}}/get_all",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"get_all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/get/0bc34393-4748-49f2-b630-e36bfaa87426",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"get",
+								"0bc34393-4748-49f2-b630-e36bfaa87426"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\" : \"sd\",\r\n    \"last_name\" : \"dobariya\",\r\n    \"email_id\" : \"sd@gmail.com\",\r\n    \"password\" : \"1234\",\r\n    \"dob\" : \"23-02-2024\",\r\n    \"country\" : \"canada\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/update/ec089d6e-8dad-41ac-abce-367be67ce041",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"update",
+								"ec089d6e-8dad-41ac-abce-367be67ce041"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/delete/9ee06451-25db-4e92-b56a-be10d67201f8",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"delete",
+								"9ee06451-25db-4e92-b56a-be10d67201f8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"first_name\" : \"rohit\",\r\n    \"last_name\" : \"dobariya\",\r\n    \"email_id\" : \"yash@gmail.com\",\r\n    \"dob\" : \"23-02-2024\",\r\n    \"country\" : \"canada\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/partial_update/6a66cc63-3a66-4a3d-91e7-d27ee399a2b5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"partial_update",
+								"6a66cc63-3a66-4a3d-91e7-d27ee399a2b5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sign_in",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"token\", jsonData.access_token);\r",
+									"\r",
+									"// Check the status code of the response\r",
+									"pm.test(\"response is ok\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Check the respone has the right elem\r",
+									"pm.test(\"response should be okay to process\", function () { \r",
+									"    pm.response.to.have.jsonBody(\"access_token\"); \r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email_id\":\"yash@gmail.com\",\r\n    \"password\":\"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/sign_in",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"sign_in"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Image",
+			"item": [
+				{
+					"name": "Upload Image",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "post_image",
+									"type": "file",
+									"src": "/E:/learning/Rjoisehub/Docker-kubernetes/01 - Getting Started/001 Welcome to the Course.mp4"
+								},
+								{
+									"key": "caption",
+									"value": "Anything",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/upload_image",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"upload_image"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Image",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/all_image/3c4bc302-b555-4a2f-94e2-23bff1c34293?page=1&per_page=2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"all_image",
+								"3c4bc302-b555-4a2f-94e2-23bff1c34293"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Image",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/get_image/9770b54a-253a-468f-a701-a7232fafd070",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"get_image",
+								"9770b54a-253a-468f-a701-a7232fafd070"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Image",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/del_image/e62c58f5-ce4b-4227-9d26-3f74c0f6997c",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"del_image",
+								"e62c58f5-ce4b-4227-9d26-3f74c0f6997c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Image Like",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/image_like/951a6128-e252-4f42-9631-81fde756016d",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"image_like",
+								"951a6128-e252-4f42-9631-81fde756016d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Image Comment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"comment\" :\"You lokking good\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/image_comment/951a6128-e252-4f42-9631-81fde756016d",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"image_comment",
+								"951a6128-e252-4f42-9631-81fde756016d"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reels",
+			"item": [
+				{
+					"name": "Upload Reel",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "post_reel",
+									"type": "file",
+									"src": "/E:/learning/Rjoisehub/Docker-kubernetes/01 - Getting Started/001 Welcome to the Course.mp4"
+								},
+								{
+									"key": "caption",
+									"value": "Docker video",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/upload_reel",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"upload_reel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All Reel",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/all_reels/3c4bc302-b555-4a2f-94e2-23bff1c34293?page=1&per_page=1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"all_reels",
+								"3c4bc302-b555-4a2f-94e2-23bff1c34293"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reel",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/get_reel/05821ceb-dbe1-4f26-b9b8-e76d0dc25ec5",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"get_reel",
+								"05821ceb-dbe1-4f26-b9b8-e76d0dc25ec5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reel",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/del_reel/d2ce823d-5cb4-4384-ad74-064fc5a6ecd7",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"del_reel",
+								"d2ce823d-5cb4-4384-ad74-064fc5a6ecd7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reels Like",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/reels_like/6bc630c0-8a64-42ab-9783-75c35de31c25",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"reels_like",
+								"6bc630c0-8a64-42ab-9783-75c35de31c25"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reels Comment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"comment\":\"nice\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/reel_comment/6bc630c0-8a64-42ab-9783-75c35de31c25",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"reel_comment",
+								"6bc630c0-8a64-42ab-9783-75c35de31c25"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Story",
+			"item": [
+				{
+					"name": "Upload Story",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "post_story",
+									"type": "file",
+									"src": "/E:/learning/Rjoisehub/Docker-kubernetes/01 - Getting Started/001 Welcome to the Course.mp4"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/story",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"story"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Story",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"token\", jsonData.access_token);\r",
+									"\r",
+									"// Check the status code of the response\r",
+									"pm.test(\"response is ok\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Check the respone has the right elem\r",
+									"pm.test(\"response should be okay to process\", function () { \r",
+									"    pm.response.to.have.jsonBody(\"access_token\"); \r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/all_story/88aa152d-e46b-4e4a-b311-30ddc80b4648",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"all_story",
+								"88aa152d-e46b-4e4a-b311-30ddc80b4648"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Story",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/del_story/d88b4c52-3f85-407f-9853-342ebd008c87",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"del_story",
+								"d88b4c52-3f85-407f-9853-342ebd008c87"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Story Like",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/story_like/4c39b469-b2a8-4684-8022-ab3f290a2c8d",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"story_like",
+								"4c39b469-b2a8-4684-8022-ab3f290a2c8d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Story Comment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"comment\": \"nice\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/story_comment/4c39b469-b2a8-4684-8022-ab3f290a2c8d",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"story_comment",
+								"4c39b469-b2a8-4684-8022-ab3f290a2c8d"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Message",
+			"item": [
+				{
+					"name": "Send Messages",
+					"item": [
+						{
+							"name": "Send Message",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"send\":\"How are you?\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/message_sending/88aa152d-e46b-4e4a-b311-30ddc80b4648",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"message_sending",
+										"88aa152d-e46b-4e4a-b311-30ddc80b4648"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Send Post",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "send",
+											"type": "file",
+											"src": "/E:/learning/Rjoisehub/Docker-kubernetes/01 - Getting Started/001 Welcome to the Course.mp4"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/send_post/b8e55110-6327-46e8-88c7-13d94b2990c4",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"send_post",
+										"b8e55110-6327-46e8-88c7-13d94b2990c4"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Receive Messages",
+					"item": [
+						{
+							"name": "all Message",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/message_receive",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"message_receive"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Message",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/del_message/a651b8dd-7fda-4fa6-a393-c1c857edd38c",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"del_message",
+								"a651b8dd-7fda-4fa6-a393-c1c857edd38c"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Follow",
+			"item": [
+				{
+					"name": "Follow & Unfollow",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/following/3c4bc302-b555-4a2f-94e2-23bff1c34293",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"following",
+								"3c4bc302-b555-4a2f-94e2-23bff1c34293"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Follower & Following",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/follow/fb71a0c9-757f-41ba-aba1-8c0cca57c44a",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"follow",
+								"fb71a0c9-757f-41ba-aba1-8c0cca57c44a"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
