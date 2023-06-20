@@ -28,7 +28,7 @@ def token_required(f):
         try:
             bearer_token = request.headers.get('Authorization')
             token = bearer_token.split()[1]
-            decode_token = jwt.decode(  
+            decode_token = jwt.decode(
                 token=token, key=Config.JWT_SECRET_KEY, algorithms=["HS256"]
             )
             user = type("MyObject", (object,), decode_token)

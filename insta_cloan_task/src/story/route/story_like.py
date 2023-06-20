@@ -12,7 +12,7 @@ like_story = Blueprint("like_story", __name__)
 @token_required
 def get_like(id):
     """story like"""
-    
+
     if not id:
         raise InstaCloneException(
             message="ID not valid", status_code=status.HTTP_404_NOT_FOUND
@@ -33,9 +33,9 @@ def get_like(id):
     story_data.count_like = likes
     story_data.liked_by = liked_by
     db.session.commit()
-    return jsonify(
-        {
-            "like": likes, 
-            "liked_by": liked_by
-        }, 
-    ), status.HTTP_200_OK
+    return (
+        jsonify(
+            {"like": likes, "liked_by": liked_by},
+        ),
+        status.HTTP_200_OK,
+    )

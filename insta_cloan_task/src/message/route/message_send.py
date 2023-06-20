@@ -81,7 +81,7 @@ def post_send(id):
 
 @send_message.route("/message_send", methods=["GET"])
 @token_required
-def message_receive():
+def show_message_send():
     """send messages"""
 
     message_data = Message.query.filter(Message.sender_id == g.user_data.id).all()
