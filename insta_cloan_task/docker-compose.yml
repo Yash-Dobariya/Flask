@@ -8,15 +8,19 @@ services:
     networks:
       - insta_clone
     container_name: api
+    restart: unless-stopped
     depends_on:
       - db
   db:
     image: postgres
     ports:
       - 5433:5432
-    env:
-      - .env
+    environment:
+      - POSTGRES_DB=insta_clone
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=yash
     container_name: postgres
+    restart: unless-stopped
     networks:
       - insta_clone
 
