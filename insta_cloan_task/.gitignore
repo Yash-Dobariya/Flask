@@ -175,3 +175,4 @@ learning
 user_images
 user_reels
 *.test-env
+.env
